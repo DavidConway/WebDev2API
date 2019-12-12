@@ -1,0 +1,25 @@
+.item{
+    background-color:burlywood;
+    width:30%;
+    height:80ex;
+    float:left;
+    margin:1%;
+    text-align:center;
+    border-radius: 5%;
+
+}
+.itemImage {
+    width: 50%;
+    height:50%;
+}
+.itemContent {
+    margin: 10%;
+    width:80%;
+    height:80%;
+    text-align: center;
+
+}
+.itemButtons{
+    width:50%;
+    margin-left:25%;
+}
