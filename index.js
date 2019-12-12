@@ -3,6 +3,8 @@ import express from 'express';
 import dataRouter from './api/data';
 import bodyParser from 'body-parser';
 import './db';
+import loaditems from './itemData';
+
 dotenv.config();
 
 const app = express();
@@ -18,6 +20,10 @@ app.use(express.static('public'));
 
 app.use('/api/data', dataRouter);
 app.use(express.static('public'));
+
+if (process.env.seedDb) {
+    loaditems();
+}
 
 app.listen(port, () => {
     console.info(`Server running at ${port}`);
