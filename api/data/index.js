@@ -17,19 +17,20 @@ router.get('/', async (req, res) => {
 
 //add post
 router.post('/', async (req, res) => {
-    console.log(req.body);
-    router.post('/', asyncHandler(async (req, res) => {
-        const items = await Items.create(req.body);
-        res.status(201).json(items);
-    }));
+    var item = new Items(req.body);
+    item.save(function (err) {
+        if (err) return handleError(err);
+        // saved!
+    });
 });
 
 //get a given post
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
-
+    
     try {
         const items = await Items.find({ 'itemName': id });
+        console.log(items);
         res.status(200).json(items);
     } catch (error) {
         handleError(res, error.message);
@@ -39,7 +40,6 @@ router.get('/:id', async (req, res) => {
 //delete item
 router.delete('/:id', asyncHandler(async (req, res) => {
     const item = await Items.findOneAndDelete({'itemName': req.params.id });
-    console.log("test", item);
     if (!item) return res.send(404);
     await item.remove();
     return res.status(204).send(item);

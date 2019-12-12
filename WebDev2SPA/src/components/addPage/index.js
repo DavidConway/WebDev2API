@@ -34,7 +34,6 @@ export default class AddPage extends Component {
     add = () => {
         if (this.itemName != "") {
             this.forceUpdate();
-            console.log(this.state);
             api.add(this.state.imageUrl, this.state.itemName, this.state.options);
         }
     };
