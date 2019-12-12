@@ -33,22 +33,15 @@ router.delete('/:id', (req, res) => {
         res.status(400).send({ message: `Unable to find item: ${key}.` });
     }
 });
+*/
 
-router.get('/:id', (req, res) => {
-    const id = req.params.id;
-    const post = stubAPI.getPost(id);
-
-    if (post) {
-        return res.status(200).send(post);
-    }
-    return res.status(404).send({ message: `Unable to find Post ${id}` });
-});*/
-
+//get all
 router.get('/', (req, res) => {
     const items = stubAPI.getAll();
     res.send({ items: items });
 });
 
+//add post
 router.post('/', (req, res) => {
     let newitem = req.body;
     if (newitem && stubAPI.add(newitem.imageUrl, newitem.itemName, newitem.options)) {
@@ -57,5 +50,16 @@ router.post('/', (req, res) => {
         res.status(400).send({ message: "Unable to find item data in request or item whith that name alredy exists." });
     }
 });
+
+//get a given post
+router.get('/:id', (req, res) => {
+    const id = req.params.id;
+    const item = stubAPI.find(id);
+
+    if (item) {
+        return res.status(200).send(item);
+    }
+    return res.status(404).send({ message: `Unable to find Post ${id}` });
+})
 
 export default router;
