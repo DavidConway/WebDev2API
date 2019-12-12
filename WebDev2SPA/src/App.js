@@ -13,11 +13,14 @@ class App extends Component {
     };
 
     componentDidMount() {
+        
         api.getAll().then(resp => {
+            console.log("test", resp);
             this.setState({
-                items: resp.items
+                items: resp
             });
         }).catch(console.error);
+        
     };
     deleteItem = (key) => {
         api.Delete(key);

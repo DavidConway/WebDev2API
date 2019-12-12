@@ -1,46 +1,53 @@
 import express from 'express';
-import stubAPI from './stubAPI';
+import Items from './itemModel';
+import asyncHandler from 'express-async-handler';
 
 const router = express.Router(); // eslint-disable-line
 
 
 //get all
-router.get('/', (req, res) => {
-    const items = stubAPI.getAll();
-    res.send({ items: items });
+router.get('/', async (req, res) => {
+    try {
+        const items = await Items.find();
+        res.status(200).send(items);
+    } catch (error) {
+        handleError(res, error.message);
+    }
 });
 
 //add post
-router.post('/', (req, res) => {
-    let newitem = req.body;
-    if (newitem && stubAPI.add(newitem.imageUrl, newitem.itemName, newitem.options)) {
-        res.status(201).send({ message: "item added Created" });
-    } else {
-        res.status(400).send({ message: "Unable to find item data in request or item whith that name alredy exists." });
-    }
+router.post('/', async (req, res) => {
+    console.log(req.body);
+    router.post('/', asyncHandler(async (req, res) => {
+        const items = await Items.create(req.body);
+        res.status(201).json(items);
+    }));
 });
 
 //get a given post
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
     const id = req.params.id;
-   
-    const item = stubAPI.find(id);
-    if (item) {
-        return res.status(200).send(item);
+
+    try {
+        const items = await Items.find({ 'itemName': id });
+        res.status(200).json(items);
+    } catch (error) {
+        handleError(res, error.message);
     }
-    return res.status(404).send({ message: `Unable to find Post ${id}` });
 });
 
 //delete item
-router.delete('/:id', (req, res) => {
-    const key = req.params.id;
-    const item = stubAPI.find(key);
-    if (item) {
-        stubAPI.delete(key)
-        res.status(200).send({ message: `Deleted item: ${key}.` });
-    } else {
-        res.status(400).send({ message: `Unable to find item: ${key}.` });
-    }
-});
+router.delete('/:id', asyncHandler(async (req, res) => {
+    const item = await Items.findOneAndDelete({'itemName': req.params.id });
+    console.log("test", item);
+    if (!item) return res.send(404);
+    await item.remove();
+    return res.status(204).send(item);
+}));
+
+function handleError(res, err) {
+    return res.send(500, err);
+};
 
 export default router;
+

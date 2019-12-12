@@ -45,7 +45,7 @@ const EditPage = ({ match }) => {
     state.imageUrl = item.imageUrl;
     state.options = item.options;
     return (
-        /*<div className="main">
+        <div className="main">
             <div className="topBottomDiv">
                 <div className="topBottomRow">
                     <div className="topBottomCell">
@@ -106,9 +106,6 @@ const EditPage = ({ match }) => {
                 </div>
             </div>
         </div>
-    );*/
-
-        <p> test {item.itemName} </p>
     );
 };
 
