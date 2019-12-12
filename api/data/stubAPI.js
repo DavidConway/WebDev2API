@@ -3,7 +3,7 @@ import _ from 'lodash';
 const data = [
     {
         imageUrl: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone8-plus-gold-select-2018?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1550795417455',
-        itemName: 'iPhone 8',
+        itemName: 'iPhone_8',
         options: [
             {
                 link: {
@@ -30,7 +30,7 @@ const data = [
     },
     {
         imageUrl: 'https://image.coolblue.nl/422x390/products/1128392',
-        itemName: 'xbox one',
+        itemName: 'xbox_one',
         options: [
             {
                 link: {
@@ -57,7 +57,7 @@ const data = [
     },
     {
         imageUrl: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5850/5850905_sd.jpg',
-        itemName: 'PlayStation 4',
+        itemName: 'PlayStation_4',
         options: [
             {
                 link: {
@@ -84,7 +84,7 @@ const data = [
     },
     {
         imageUrl: 'https://cdn.pocket-lint.com/r/s/320x/assets/images/140007-games-review-nintendo-switch-review-image1-lp6zy9awm0.jpg?v1',
-        itemName: 'nintendo switch',
+        itemName: 'nintendo_switch',
         options: [
             {
                 link: {
