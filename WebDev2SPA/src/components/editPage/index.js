@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./editPage.css"
-import api from "../../dataStore/stubAPI";
+import * as api from '../../api';
 import { withRouter, Link } from 'react-router-dom';
 
 let state = {
@@ -34,7 +34,7 @@ let oldID = "";
 let save = () => {
     if (state.itemName != "") {
         
-        api.delete(oldID);
+        api.Delete(oldID);
         api.add(state.imageUrl, state.itemName, state.options);
     }
 };

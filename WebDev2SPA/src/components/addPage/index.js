@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./addPage.css"
-import api from "../../dataStore/stubAPI";
+import * as api from '../../api';
 import { Link } from 'react-router-dom';
 
 export default class AddPage extends Component {

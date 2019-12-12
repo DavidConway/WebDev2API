@@ -11,11 +11,11 @@ export const Delete = itemID => {
 };
 
 export const find = itemID => {
-    return axios.get(`/api/data/${postId}`)
+    return axios.get(`/api/data/${itemID}`)
         .then(resp => resp.data);
 };
 
 export const add = (newImageUrl, newItemName, newOptions) => {
-    return axios.post('/api/data', { itemUrl: newImageUrl, itemName: newItemName, options: NewOptions })
+    return axios.post('/api/data', { itemUrl: newImageUrl, itemName: newItemName, options: newOptions })
         .then(resp => resp.data);
 };

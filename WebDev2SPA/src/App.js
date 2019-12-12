@@ -6,30 +6,29 @@ import * as api from './api';
 import _ from "lodash";
 
 class App extends Component {
-    state = {};
 
+    state = { items: [{}] };
     handelSearch = (value) => {
         this.setState({ search: value })
     };
-    componentDidMount() { 
-        this.setState({});
-    }
+
+    componentDidMount() {
+        api.getAll().then(resp => {
+            this.setState({
+                items: resp.items
+            });
+        }).catch(console.error);
+    };
     deleteItem = (key) => {
         api.Delete(key);
         this.setState({});
     };
     render() {
-        let Items = api.getAll();
-        let filteredItems = Items.filter(c => {
-            const name = `${c.itemName}`;
-            console.log(`${name}`);
-            return name.search(this.state.search) !== -1;
-        })
-        let sortedItems = _.sortBy(filteredItems, c => c.itemName);
+        const items = _.sortBy(this.state.items, item => item.itemName);
         return (
             <div>
                 <Header onUserInput={this.handelSearch} />
-                <ItemList itemList={sortedItems} deleteHandler={this.deleteItem} />
+                <ItemList itemList={items} deleteHandler={this.deleteItem} />
             </div>
         );
     }
