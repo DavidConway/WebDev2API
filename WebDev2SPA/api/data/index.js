@@ -60,6 +60,18 @@ router.get('/:id', (req, res) => {
         return res.status(200).send(item);
     }
     return res.status(404).send({ message: `Unable to find Post ${id}` });
-})
+});
+
+//delete item
+router.delete('/:id', (req, res) => {
+    const key = req.params.id;
+    const item = stubAPI.find(key);
+    if (item) {
+        stubAPI.delete(key)
+        res.status(200).send({ message: `Deleted item: ${key}.` });
+    } else {
+        res.status(400).send({ message: `Unable to find item: ${key}.` });
+    }
+});
 
 export default router;

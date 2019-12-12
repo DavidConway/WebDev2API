@@ -118,7 +118,7 @@ const StubAPI = {
     },
 
     delete:(k)=> {
-        let elements = _.remove(this.data, item => item.itemName === k);
+        let elements = _.remove(data, item => item.itemName === k);
         return elements;
     },
 
