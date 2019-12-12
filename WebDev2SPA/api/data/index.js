@@ -2,20 +2,8 @@ import express from 'express';
 import stubAPI from './stubAPI';
 
 const router = express.Router(); // eslint-disable-line
+/*
 
-/*router.get('/', (req, res) => {
-    res.send({ data: data });
-});
-
-router.post('/', (req, res) => {
-    let newitem = req.body;
-    if (newitem) {
-        data.push({ imageUrl: newitem.imageUrl, itemName: newitem.itemName, options: newitem.options });
-        res.status(201).send({ message: "item added Created" });
-    } else {
-        res.status(400).send({ message: "Unable to find option in request. No Contact Found in body" });
-    }
-});
 
 router.put('/:id', (req, res) => {
     const key = req.params.id;
@@ -61,5 +49,13 @@ router.get('/', (req, res) => {
     res.send({ items: items });
 });
 
+router.post('/', (req, res) => {
+    let newitem = req.body;
+    if (newitem && stubAPI.add(newitem.imageUrl, newitem.itemName, newitem.options)) {
+        res.status(201).send({ message: "item added Created" });
+    } else {
+        res.status(400).send({ message: "Unable to find item data in request or item whith that name alredy exists." });
+    }
+});
 
 export default router;

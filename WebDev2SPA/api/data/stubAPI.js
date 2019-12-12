@@ -124,21 +124,27 @@ const StubAPI = {
 
     find:(id) => {
         let index = _.findIndex(
-            this.data,
+            data,
             item => `${item.itemName}` === id
         );
         if (index !== -1) {
-            return this.data[index];
+            return data[index];
         }
         return null;
     },
     add(imageUrl, itemName, options) {
-        this.data.push({
-            imageUrl,
-            itemName,
-            options
-        });
-        return null;
+
+        if (!(this.find(itemName))) {
+            let newItem = data.push({
+                imageUrl,
+                itemName,
+                options
+            });
+            return newItem;
+        }
+        else {
+            return null;
+        }
     }
 }
 
