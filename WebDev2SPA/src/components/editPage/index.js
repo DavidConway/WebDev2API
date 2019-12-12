@@ -5,7 +5,7 @@ import { withRouter, Link } from 'react-router-dom';
 
 let state = {
     imageUrl: '',
-    itemName: '',
+    itemName: 'awdawD',
     options: [
         {
             link: {
@@ -38,14 +38,14 @@ let save = () => {
         api.add(state.imageUrl, state.itemName, state.options);
     }
 };
-const EditPage = ({match}) => {
-    const item = api.find(match.params.id);
+const EditPage = ({ match }) => {
+    var item = api.find(match.params.id);
     oldID = match.params.id;
     state.itemName = item.itemName;
     state.imageUrl = item.imageUrl;
     state.options = item.options;
     return (
-        <div className="main">
+        /*<div className="main">
             <div className="topBottomDiv">
                 <div className="topBottomRow">
                     <div className="topBottomCell">
@@ -106,6 +106,9 @@ const EditPage = ({match}) => {
                 </div>
             </div>
         </div>
+    );*/
+
+        <p> test {item.itemName} </p>
     );
 };
 

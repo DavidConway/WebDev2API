@@ -23,8 +23,8 @@ router.post('/', (req, res) => {
 //get a given post
 router.get('/:id', (req, res) => {
     const id = req.params.id;
+   
     const item = stubAPI.find(id);
-
     if (item) {
         return res.status(200).send(item);
     }

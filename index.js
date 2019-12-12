@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import dataRouter from './api/data';
 import bodyParser from 'body-parser';
+import './db';
 dotenv.config();
 
 const app = express();

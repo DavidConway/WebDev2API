@@ -117,12 +117,15 @@ const StubAPI = {
         return data;
     },
 
-    delete:(k)=> {
+    delete: (k) => {
+        
         let elements = _.remove(data, item => item.itemName === k);
         return elements;
     },
 
-    find:(id) => {
+    find: (id) => {
+        
+
         let index = _.findIndex(
             data,
             item => `${item.itemName}` === id

@@ -11,6 +11,8 @@ export const Delete = itemID => {
 };
 
 export const find = itemID => {
+
+    //data not getting passed up correctly
     return axios.get(`/api/data/${itemID}`)
         .then(resp => resp.data);
 };
