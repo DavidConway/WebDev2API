@@ -2,6 +2,7 @@ import express from 'express';
 import { data } from './data';
 
 const router = express.Router(); // eslint-disable-line
+
 router.get('/', (req, res) => {
     res.send({ data: data });
 });
@@ -29,6 +30,19 @@ router.put('/:id', (req, res) => {
         res.status(200).send({ message: 'item Updated' });
     } else {
         res.status(400).send({ message: 'Unable to find item in request. No item Found in body' });
+    }
+});
+
+router.delete('/:id', (req, res) => {
+    const key = req.params.id;
+    const index = data.map((item) => {
+        return item.itemName;
+    }).indexOf(key);
+    if (index > -1) {
+        data.splice(index, 1);
+        res.status(200).send({ message: `Deleted item: ${key}.` });
+    } else {
+        res.status(400).send({ message: `Unable to find item: ${key}.` });
     }
 });
 export default router;
