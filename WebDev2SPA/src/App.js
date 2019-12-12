@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import ItemList from './components/itemlist/';
 import Header from './components/header/';
-import api from './dataStore/stubAPI';
+import * as api from './api';
 import _ from "lodash";
 
 class App extends Component {
@@ -12,12 +12,10 @@ class App extends Component {
         this.setState({ search: value })
     };
     componentDidMount() { 
-        let StoredItems = require('./dataStore/data');
-        api.initialize(StoredItems);
         this.setState({});
     }
     deleteItem = (key) => {
-        api.delete(key);
+        api.Delete(key);
         this.setState({});
     };
     render() {
