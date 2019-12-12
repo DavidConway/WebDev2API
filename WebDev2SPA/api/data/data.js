@@ -1,4 +1,4 @@
-module.exports = [
+export const data = [
     {
         imageUrl: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone8-plus-gold-select-2018?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1550795417455',
         itemName: 'iPhone 8',
